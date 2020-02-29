@@ -1,0 +1,46 @@
+{
+    "name": "LeadRecord",
+    "fields": [
+        {
+            "fieldName": "maxHoursForLecture",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "maxHoursForExercise",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "maxHoursForWorkshop",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "course",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "CourseType",
+            "fieldValues": "LECTURE,EXARCISE,WORKSHOP"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "discipline",
+            "otherEntityRelationshipName": "leadRecord",
+            "relationshipName": "assitent",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20200215213400",
+    "entityTableName": "lead_record",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

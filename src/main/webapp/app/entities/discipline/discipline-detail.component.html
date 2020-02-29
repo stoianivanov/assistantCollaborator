@@ -1,0 +1,74 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="discipline">
+            <h2><span jhiTranslate="assistantCollaboratorApp.discipline.detail.title">Discipline</span> {{ discipline.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="assistantCollaboratorApp.discipline.code">Code</span></dt>
+                <dd>
+                    <span>{{ discipline.code }}</span>
+                </dd>
+                <dt><span jhiTranslate="assistantCollaboratorApp.discipline.department">Department</span></dt>
+                <dd>
+                    <span>{{ discipline.department }}</span>
+                </dd>
+                <dt><span jhiTranslate="assistantCollaboratorApp.discipline.name">Name</span></dt>
+                <dd>
+                    <span>{{ discipline.name }}</span>
+                </dd>
+                <dt><span jhiTranslate="assistantCollaboratorApp.discipline.hoursForLecture">Hours For Lecture</span></dt>
+                <dd>
+                    <span>{{ discipline.hoursForLecture }}</span>
+                </dd>
+                <dt><span jhiTranslate="assistantCollaboratorApp.discipline.hoursForWorkshop">Hours For Workshop</span></dt>
+                <dd>
+                    <span>{{ discipline.hoursForWorkshop }}</span>
+                </dd>
+                <dt><span jhiTranslate="assistantCollaboratorApp.discipline.hoursForExercise">Hours For Exercise</span></dt>
+                <dd>
+                    <span>{{ discipline.hoursForExercise }}</span>
+                </dd>
+                <dt><span jhiTranslate="assistantCollaboratorApp.discipline.semester">Semester</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'assistantCollaboratorApp.Semester.' + discipline.semester }}">{{ discipline.semester }}</span>
+                </dd>
+                <dt><span jhiTranslate="assistantCollaboratorApp.discipline.numberOfStudents">Number Of Students</span></dt>
+                <dd>
+                    <span>{{ discipline.numberOfStudents }}</span>
+                </dd>
+                <dt><span jhiTranslate="assistantCollaboratorApp.discipline.incomingTest">Incoming Test</span></dt>
+                <dd>
+                    <span>{{ discipline.incomingTest }}</span>
+                </dd>
+                <dt><span jhiTranslate="assistantCollaboratorApp.discipline.type">Type</span></dt>
+                <dd>
+                    <div *ngIf="discipline.type">
+                        <a [routerLink]="['/discipline-type', discipline.type?.id, 'view']">{{ discipline.type?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="assistantCollaboratorApp.discipline.lectos">Lectos</span></dt>
+                <dd>
+                    <span *ngFor="let lectos of discipline.lectos; let last = last">
+                        <a [routerLink]="['/identity', lectos?.id, 'view']">{{ lectos.id }}</a>{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/discipline', discipline.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

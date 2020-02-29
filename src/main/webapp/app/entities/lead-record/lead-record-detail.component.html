@@ -1,0 +1,52 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="leadRecord">
+            <h2><span jhiTranslate="assistantCollaboratorApp.leadRecord.detail.title">Lead Record</span> {{ leadRecord.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="assistantCollaboratorApp.leadRecord.maxHoursForLecture">Max Hours For Lecture</span></dt>
+                <dd>
+                    <span>{{ leadRecord.maxHoursForLecture }}</span>
+                </dd>
+                <dt><span jhiTranslate="assistantCollaboratorApp.leadRecord.maxHoursForExercise">Max Hours For Exercise</span></dt>
+                <dd>
+                    <span>{{ leadRecord.maxHoursForExercise }}</span>
+                </dd>
+                <dt><span jhiTranslate="assistantCollaboratorApp.leadRecord.maxHoursForWorkshop">Max Hours For Workshop</span></dt>
+                <dd>
+                    <span>{{ leadRecord.maxHoursForWorkshop }}</span>
+                </dd>
+                <dt><span jhiTranslate="assistantCollaboratorApp.leadRecord.course">Course</span></dt>
+                <dd>
+                    <span>{{ leadRecord.course }}</span>
+                </dd>
+                <dt><span jhiTranslate="assistantCollaboratorApp.leadRecord.type">Type</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'assistantCollaboratorApp.CourseType.' + leadRecord.type }}">{{ leadRecord.type }}</span>
+                </dd>
+                <dt><span jhiTranslate="assistantCollaboratorApp.leadRecord.assitent">Assitent</span></dt>
+                <dd>
+                    <div *ngIf="leadRecord.assitent">
+                        <a [routerLink]="['/discipline', leadRecord.assitent?.id, 'view']">{{ leadRecord.assitent?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/lead-record', leadRecord.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+{
+  "assistantCollaboratorApp": {
+    "CourseType": {
+      "null": "",
+      "LECTURE": "LECTURE",
+      "EXARCISE": "EXARCISE",
+      "WORKSHOP": "WORKSHOP"
+    }
+  }
+}

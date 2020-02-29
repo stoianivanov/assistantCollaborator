@@ -1,0 +1,44 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="direction">
+            <h2><span jhiTranslate="assistantCollaboratorApp.direction.detail.title">Direction</span> {{ direction.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="assistantCollaboratorApp.direction.name">Name</span></dt>
+                <dd>
+                    <span>{{ direction.name }}</span>
+                </dd>
+                <dt><span jhiTranslate="assistantCollaboratorApp.direction.code">Code</span></dt>
+                <dd>
+                    <span>{{ direction.code }}</span>
+                </dd>
+                <dt><span jhiTranslate="assistantCollaboratorApp.direction.appropriate">Appropriate</span></dt>
+                <dd>
+                    <span>{{ direction.appropriate }}</span>
+                </dd>
+                <dt><span jhiTranslate="assistantCollaboratorApp.direction.discipline">Discipline</span></dt>
+                <dd>
+                    <div *ngIf="direction.discipline">
+                        <a [routerLink]="['/discipline', direction.discipline?.id, 'view']">{{ direction.discipline?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/direction', direction.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

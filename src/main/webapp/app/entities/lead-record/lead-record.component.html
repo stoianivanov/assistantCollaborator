@@ -1,0 +1,75 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="assistantCollaboratorApp.leadRecord.home.title">Lead Records</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-lead-record" [routerLink]="['/lead-record/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="assistantCollaboratorApp.leadRecord.home.createLabel">
+            Create a new Lead Record
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="leadRecords?.length === 0">
+        <span jhiTranslate="assistantCollaboratorApp.leadRecord.home.notFound">No leadRecords found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="leadRecords?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+                    <th scope="col" ><span jhiTranslate="assistantCollaboratorApp.leadRecord.maxHoursForLecture">Max Hours For Lecture</span></th>
+                    <th scope="col" ><span jhiTranslate="assistantCollaboratorApp.leadRecord.maxHoursForExercise">Max Hours For Exercise</span></th>
+                    <th scope="col" ><span jhiTranslate="assistantCollaboratorApp.leadRecord.maxHoursForWorkshop">Max Hours For Workshop</span></th>
+                    <th scope="col" ><span jhiTranslate="assistantCollaboratorApp.leadRecord.course">Course</span></th>
+                    <th scope="col" ><span jhiTranslate="assistantCollaboratorApp.leadRecord.type">Type</span></th>
+                    <th scope="col" ><span jhiTranslate="assistantCollaboratorApp.leadRecord.assitent">Assitent</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let leadRecord of leadRecords ;trackBy: trackId">
+                    <td><a [routerLink]="['/lead-record', leadRecord.id, 'view']">{{ leadRecord.id }}</a></td>
+                    <td>{{ leadRecord.maxHoursForLecture }}</td>
+                    <td>{{ leadRecord.maxHoursForExercise }}</td>
+                    <td>{{ leadRecord.maxHoursForWorkshop }}</td>
+                    <td>{{ leadRecord.course }}</td>
+                    <td jhiTranslate="{{ 'assistantCollaboratorApp.CourseType.' + leadRecord.type }}">{{ leadRecord.type }}</td>
+                    <td>
+                        <div *ngIf="leadRecord.assitent">
+                            <a [routerLink]="['/discipline', leadRecord.assitent?.id, 'view']" >{{ leadRecord.assitent?.id }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/lead-record', leadRecord.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/lead-record', leadRecord.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(leadRecord)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

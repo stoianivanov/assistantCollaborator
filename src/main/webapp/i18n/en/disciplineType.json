@@ -1,0 +1,22 @@
+{
+  "assistantCollaboratorApp": {
+    "disciplineType": {
+      "home": {
+        "title": "Discipline Types",
+        "createLabel": "Create a new Discipline Type",
+        "createOrEditLabel": "Create or edit a Discipline Type",
+        "notFound": "No Discipline Types found"
+      },
+      "created": "A new Discipline Type is created with identifier {{ param }}",
+      "updated": "A Discipline Type is updated with identifier {{ param }}",
+      "deleted": "A Discipline Type is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Discipline Type {{ id }}?"
+      },
+      "detail": {
+        "title": "Discipline Type"
+      },
+      "type": "Type"
+    }
+  }
+}

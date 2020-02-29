@@ -1,0 +1,61 @@
+entity Identity {
+	fullName String,
+    scienceDegree String,
+    education String,
+    job String,
+    phoneNumber String,
+    eMail String
+}
+entity Discipline  {
+	code String,
+ 	department String,
+ 	name String,
+ 	hoursForLecture Integer,
+    hoursForWorkshop Integer,
+    hoursForExercise Integer,
+    semester Semester,
+    numberOfStudents Integer,
+	incomingTest Boolean
+}
+
+entity LeadRecord {
+	maxHoursForLecture Integer,
+    maxHoursForExercise Integer,
+    maxHoursForWorkshop Integer,
+    course Integer,
+    type CourseType
+    
+}
+
+entity Direction {
+	name String,
+    code String,
+    appropriate String
+}
+enum Semester {
+	SUMMER,
+    WINTER
+}
+
+enum CourseType {
+	LECTURE,
+    EXARCISE,
+    WORKSHOP
+}
+
+entity DisciplineType {
+	type String
+}
+
+relationship OneToMany {
+	Discipline{approproateFor} to Direction,
+    
+}
+
+relationship OneToOne {
+	LeadRecord{assitent} to Discipline,
+    Discipline{type} to DisciplineType
+    }
+relationship ManyToMany {
+	Discipline{lectos} to Identity{disciplines}
+}

@@ -1,0 +1,67 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-lead-record-heading" jhiTranslate="assistantCollaboratorApp.leadRecord.home.createOrEditLabel">Create or edit a Lead Record</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="assistantCollaboratorApp.leadRecord.maxHoursForLecture" for="field_maxHoursForLecture">Max Hours For Lecture</label>
+                    <input type="number" class="form-control" name="maxHoursForLecture" id="field_maxHoursForLecture"
+                           formControlName="maxHoursForLecture"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="assistantCollaboratorApp.leadRecord.maxHoursForExercise" for="field_maxHoursForExercise">Max Hours For Exercise</label>
+                    <input type="number" class="form-control" name="maxHoursForExercise" id="field_maxHoursForExercise"
+                           formControlName="maxHoursForExercise"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="assistantCollaboratorApp.leadRecord.maxHoursForWorkshop" for="field_maxHoursForWorkshop">Max Hours For Workshop</label>
+                    <input type="number" class="form-control" name="maxHoursForWorkshop" id="field_maxHoursForWorkshop"
+                           formControlName="maxHoursForWorkshop"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="assistantCollaboratorApp.leadRecord.course" for="field_course">Course</label>
+                    <input type="number" class="form-control" name="course" id="field_course"
+                           formControlName="course"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="assistantCollaboratorApp.leadRecord.type" for="field_type">Type</label>
+                    <select class="form-control" name="type" formControlName="type" id="field_type">
+                        <option value="LECTURE">{{ 'assistantCollaboratorApp.CourseType.LECTURE' | translate }}</option>
+                        <option value="EXARCISE">{{ 'assistantCollaboratorApp.CourseType.EXARCISE' | translate }}</option>
+                        <option value="WORKSHOP">{{ 'assistantCollaboratorApp.CourseType.WORKSHOP' | translate }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="assistantCollaboratorApp.leadRecord.assitent" for="field_assitent">Assitent</label>
+                    <select class="form-control" id="field_assitent" name="assitent" formControlName="assitent">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="disciplineOption.id === editForm.get('assitent')!.value?.id ? editForm.get('assitent')!.value : disciplineOption" *ngFor="let disciplineOption of assitents; trackBy: trackById">{{ disciplineOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

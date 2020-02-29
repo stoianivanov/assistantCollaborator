@@ -1,0 +1,36 @@
+{
+    "name": "Direction",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "code",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "appropriate",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "discipline",
+            "otherEntityRelationshipName": "approproateFor",
+            "relationshipName": "discipline",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200215213500",
+    "entityTableName": "direction",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

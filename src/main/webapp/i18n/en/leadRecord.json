@@ -1,0 +1,27 @@
+{
+  "assistantCollaboratorApp": {
+    "leadRecord": {
+      "home": {
+        "title": "Lead Records",
+        "createLabel": "Create a new Lead Record",
+        "createOrEditLabel": "Create or edit a Lead Record",
+        "notFound": "No Lead Records found"
+      },
+      "created": "A new Lead Record is created with identifier {{ param }}",
+      "updated": "A Lead Record is updated with identifier {{ param }}",
+      "deleted": "A Lead Record is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Lead Record {{ id }}?"
+      },
+      "detail": {
+        "title": "Lead Record"
+      },
+      "maxHoursForLecture": "Max Hours For Lecture",
+      "maxHoursForExercise": "Max Hours For Exercise",
+      "maxHoursForWorkshop": "Max Hours For Workshop",
+      "course": "Course",
+      "type": "Type",
+      "assitent": "Assitent"
+    }
+  }
+}
