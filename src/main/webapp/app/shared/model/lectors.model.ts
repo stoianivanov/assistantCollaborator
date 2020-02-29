@@ -17,5 +17,5 @@ export interface ILectorsModel {
   hoursForLecture?: number;
   hoursForWorkshop?: number;
   hoursForExercise?: number;
-  numberOFstudents?: number;
+  numberOfStudents?: number;
 }

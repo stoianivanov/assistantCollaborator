@@ -1,0 +1,51 @@
+<table class="table table-striped" >
+    <thead>
+        <tr>
+            <th scope="col">№</th>
+            <th scope="col">име, презиме, фамилия</th>
+            <th scope="col">н.степен</th>
+            <th scope="col">образование</th>
+            <th scope="col">месторабота</th>
+            <th scope="col">телефон</th>
+            <th scope="col">e-mail</th>
+            <th scope="col">дисциплина</th>
+            <th scope="col">тип занятие Л/У/Пр</th>
+            <th scope="col">вид дисц З/И/Ф</th>
+            <th scope="col">спец</th>
+            <th scope="col">курс</th>
+            <th scope="col">форма Р/З</th>
+            <th scope="col">поток</th>
+            <th scope="col">гр</th>
+            <th scope="col">Л</th>
+            <th scope="col">У</th>
+            <th scope="col">Пр</th>
+            <th scope="col">Макс.брой изпитани</th>
+        </tr>
+    </thead>
+
+    <tbody>
+     <tr *ngFor="let lector of lectors">
+         <td>{{lector.number}}</td>
+         <td>{{lector.name}}</td>
+         <td>{{lector.scienceDegree}}</td>
+         <td>{{lector.education}}</td>
+         <td>{{lector.job}}</td>
+         <td>{{lector.phoneNumber}}</td>
+         <td>{{lector.email}}</td>
+         <td>{{lector.discipline}}</td>
+         <td>{{lector.disciplineType}}</td>
+         <td>{{lector.disciplineKind}}</td>
+         <td>{{lector.spec}}</td>
+         <td>{{lector.course}}</td>
+         <td>{{lector.form}}</td>
+         <td>{{lector.flow}}</td>
+         <td>{{lector.group}}</td>
+         <td>{{lector.hoursForLecture}}</td>
+         <td>{{lector.hoursForWorkshop}}</td>
+         <td>{{lector.hoursForExercise}}</td>
+         <td>{{lector.numberOfStudents}}</td>
+
+
+     </tr>
+    </tbody>
+</table>
