@@ -1,8 +1,11 @@
 <div class="row" *ngIf="!isAuthenticated()">
 
-    <img src="../../content/images/fmi-logo-eng.png">
+    <img
+            [src]="'../../content/images/fmi-logo-eng.png'"
+            alt="fmi logo"
+            class="col-6">
 
-    <jhi-login></jhi-login>
+    <jhi-login class="col"></jhi-login>
 </div>
 
 
