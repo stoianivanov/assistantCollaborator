@@ -68,7 +68,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     };
   }
 
-  hendleHonoredLecotor(fileInput: any): void {
+  handleHonoredLecotor(fileInput: any): void {
     this.honoredLectors = this.honoredLectorService.readHonoredLectors(fileInput);
   }
 }

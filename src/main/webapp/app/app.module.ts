@@ -16,6 +16,7 @@ import { ActiveMenuDirective } from './layouts/navbar/active-menu.directive';
 import { ErrorComponent } from './layouts/error/error.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HonoredLectorComponent } from './honored-lector/honored-lector.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   imports: [

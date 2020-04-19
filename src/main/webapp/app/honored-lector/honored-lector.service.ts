@@ -8,22 +8,21 @@ export class HonoredLectorService {
   constructor() {}
 
   readHonoredLectors(fileInput: any): ILectorsModel[] {
-    let lectors: ILectorsModel[] = [];
+    const lectors: ILectorsModel[] = [];
 
-    let reader: FileReader = new FileReader();
+    const reader: FileReader = new FileReader();
 
     reader.readAsText(fileInput.target.files[0]);
 
-    reader.onload = e => {
-      let csv: string = '' + reader.result;
+    reader.onload = () => {
+      const csv: string = '' + reader.result;
       let headers: string[] = [];
       let allTextLines = csv.split(/\r|\n|\r/);
       headers = allTextLines[0].split(',');
 
-      let result: any[] = [];
       allTextLines = allTextLines.slice(1);
       let idx = 0;
-      for (let row of allTextLines) {
+      for (const row of allTextLines) {
         let obj = {};
         if (row.length > 0) {
           let data: string[] = row.split(',');
@@ -51,7 +50,6 @@ export class HonoredLectorService {
           lectors.push(obj);
         }
       }
-      console.log(result);
     };
 
     return lectors;

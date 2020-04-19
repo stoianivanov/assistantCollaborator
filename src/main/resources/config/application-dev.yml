@@ -37,9 +37,9 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:h2:file:./target/h2db/db/assistantcollaborator;DB_CLOSE_DELAY=-1
-    username: assistantCollaborator
-    password:
+    url: jdbc:postgresql://10.19.9.90:5432/postgres
+    username: postgres
+    password: stoyan123
     hikari:
       poolName: Hikari
       auto-commit: false
@@ -47,6 +47,8 @@ spring:
     console:
       enabled: false
   jpa:
+    database-platform: io.github.jhipster.domain.util.FixedPostgreSQL10Dialect
+    database: POSTGRESQL
     show-sql: true
     properties:
       hibernate.id.new_generator_mappings: true
