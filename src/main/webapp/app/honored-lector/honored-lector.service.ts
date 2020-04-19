@@ -28,24 +28,24 @@ export class HonoredLectorService {
           let data: string[] = row.split(',');
           obj = {
             number: ++idx,
-            name: data[0],
-            scienceDegree: data[1],
-            education: data[2],
-            job: data[3],
-            phoneNumber: data[4],
-            email: data[5],
-            discipline: data[6],
-            disciplineType: data[7],
-            disciplineKind: data[8],
-            spec: data[9],
-            course: data[10],
-            form: data[11],
-            flow: data[12],
-            group: data[13],
-            hoursForLecture: data[14],
-            hoursForWorkshop: data[15],
-            hoursForExercise: data[16],
-            numberOfStudents: data[17]
+            name: data[1],
+            scienceDegree: data[2],
+            education: data[3],
+            job: data[4],
+            phoneNumber: data[5],
+            email: data[6],
+            discipline: data[7],
+            disciplineType: data[8],
+            disciplineKind: data[9],
+            spec: data[10],
+            course: data[11],
+            form: data[12],
+            flow: data[13],
+            group: data[14],
+            hoursForLecture: data[15],
+            hoursForWorkshop: data[16],
+            hoursForExercise: data[17],
+            numberOfStudents: data[18]
           };
           lectors.push(obj);
         }

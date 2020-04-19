@@ -19,5 +19,5 @@
                id="file"
                (change)="handleHonoredLecotor($event)">
     </div>
-    <jhi-honored-lector [lectors]="honoredLectors"></jhi-honored-lector>
+    <jhi-honored-lector [lectors]="honoredLectors" (confirmListChange)="updateDisciplineAndLectos($event)"></jhi-honored-lector>
 </div>

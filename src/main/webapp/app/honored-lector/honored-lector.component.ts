@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ILectorsModel } from 'app/shared/model/lectors.model';
 
 @Component({
@@ -8,7 +8,12 @@ import { ILectorsModel } from 'app/shared/model/lectors.model';
 })
 export class HonoredLectorComponent implements OnInit {
   @Input() public lectors: ILectorsModel[] = [];
+  @Output() confirmListChange = new EventEmitter<ILectorsModel[]>();
   constructor() {}
 
   ngOnInit(): void {}
+
+  confirmLectors() {
+    this.confirmListChange.emit(this.lectors);
+  }
 }

@@ -42,33 +42,37 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
-  handleFileInput(fileInput: any) {
-    let reader: FileReader = new FileReader();
-
-    reader.readAsText(fileInput.target.files[0]);
-
-    reader.onload = e => {
-      let csv: string = '' + reader.result;
-      let allTextLines = csv.split(/\r|\n|\r/);
-      this.headers = allTextLines[0].split(',');
-
-      let result: any[] = [];
-      allTextLines = allTextLines.slice(1);
-      for (let row of allTextLines) {
-        let obj = {};
-        if (row.length > 0) {
-          let data: string[] = row.split(',');
-          for (let i = 0; i < this.headers.length; ++i) {
-            obj[this.headers[i]] = data[i];
-          }
-          result.push(obj);
-        }
-      }
-      console.log(result);
-    };
-  }
+  // handleFileInput(fileInput: any) {
+  //   let reader: FileReader = new FileReader();
+  //
+  //   reader.readAsText(fileInput.target.files[0]);
+  //
+  //   reader.onload = e => {
+  //     let csv: string = '' + reader.result;
+  //     let allTextLines = csv.split(/\r|\n|\r/);
+  //     this.headers = allTextLines[0].split(',');
+  //
+  //     let result: any[] = [];
+  //     allTextLines = allTextLines.slice(1);
+  //     for (let row of allTextLines) {
+  //       let obj = {};
+  //       if (row.length > 0) {
+  //         let data: string[] = row.split(',');
+  //         for (let i = 0; i < this.headers.length; ++i) {
+  //           obj[this.headers[i]] = data[i];
+  //         }
+  //         result.push(obj);
+  //       }
+  //     }
+  //     console.log(result);
+  //   };
+  // }
 
   handleHonoredLecotor(fileInput: any): void {
     this.honoredLectors = this.honoredLectorService.readHonoredLectors(fileInput);
+  }
+
+  updateDisciplineAndLectos(lectors: ILectorsModel[]) {
+    console.log(lectors);
   }
 }
