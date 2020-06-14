@@ -66,8 +66,6 @@ public class IdentityService {
         user.setFirstName(fullname[0]);
         user.setLastName(fullname[1]);
         user.setEmail(identity.geteMail());
-//        user.setPassword("12345");
-//        user.setAuthorities(new HashSet<>(Authority));
         return user;
     }
 }

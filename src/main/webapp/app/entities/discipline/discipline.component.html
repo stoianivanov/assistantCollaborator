@@ -23,41 +23,21 @@
             <thead>
                 <tr>
                     <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
-                    <th scope="col" ><span jhiTranslate="assistantCollaboratorApp.discipline.code">Code</span></th>
-                    <th scope="col" ><span jhiTranslate="assistantCollaboratorApp.discipline.department">Department</span></th>
-                    <th scope="col" ><span jhiTranslate="assistantCollaboratorApp.discipline.name">Name</span></th>
-                    <th scope="col" ><span jhiTranslate="assistantCollaboratorApp.discipline.hoursForLecture">Hours For Lecture</span></th>
-                    <th scope="col" ><span jhiTranslate="assistantCollaboratorApp.discipline.hoursForWorkshop">Hours For Workshop</span></th>
-                    <th scope="col" ><span jhiTranslate="assistantCollaboratorApp.discipline.hoursForExercise">Hours For Exercise</span></th>
-                    <th scope="col" ><span jhiTranslate="assistantCollaboratorApp.discipline.semester">Semester</span></th>
-                    <th scope="col" ><span jhiTranslate="assistantCollaboratorApp.discipline.numberOfStudents">Number Of Students</span></th>
-                    <th scope="col" ><span jhiTranslate="assistantCollaboratorApp.discipline.incomingTest">Incoming Test</span></th>
-                    <th scope="col" ><span jhiTranslate="assistantCollaboratorApp.discipline.type">Type</span></th>
-                    <th scope="col" ><span jhiTranslate="assistantCollaboratorApp.discipline.lectos">Lectos</span></th>
+                    <th scope="col" ><span jhiTranslate="assistantCollaboratorApp.discipline.description">Description</span></th>
+                    <th scope="col" ><span jhiTranslate="assistantCollaboratorApp.discipline.disciplineType">Discipline Type</span></th>
+                    <th scope="col" ><span jhiTranslate="assistantCollaboratorApp.discipline.disciplineRecord">Discipline Record</span></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let discipline of disciplines ;trackBy: trackId">
                     <td><a [routerLink]="['/discipline', discipline.id, 'view']">{{ discipline.id }}</a></td>
-                    <td>{{ discipline.code }}</td>
-                    <td>{{ discipline.department }}</td>
-                    <td>{{ discipline.name }}</td>
-                    <td>{{ discipline.hoursForLecture }}</td>
-                    <td>{{ discipline.hoursForWorkshop }}</td>
-                    <td>{{ discipline.hoursForExercise }}</td>
-                    <td jhiTranslate="{{ 'assistantCollaboratorApp.Semester.' + discipline.semester }}">{{ discipline.semester }}</td>
-                    <td>{{ discipline.numberOfStudents }}</td>
-                    <td>{{ discipline.incomingTest }}</td>
+                    <td>{{ discipline.description }}</td>
+                    <td>{{ discipline.disciplineType }}</td>
                     <td>
-                        <div *ngIf="discipline.type">
-                            <a [routerLink]="['/discipline-type', discipline.type?.id, 'view']" >{{ discipline.type?.id }}</a>
+                        <div *ngIf="discipline.disciplineRecord">
+                            <a [routerLink]="['/discipline-record', discipline.disciplineRecord?.id, 'view']" >{{ discipline.disciplineRecord?.id }}</a>
                         </div>
-                    </td>
-                    <td>
-                        <span *ngFor="let lectos of discipline.lectos; let last = last">
-                            <a class="form-control-static" [routerLink]="['/identity', lectos?.id, 'view']">{{ lectos.id }}</a>{{ last ? '' : ', ' }}
-                        </span>
                     </td>
                     <td class="text-right">
                         <div class="btn-group">

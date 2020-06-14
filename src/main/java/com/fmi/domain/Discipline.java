@@ -1,13 +1,10 @@
 package com.fmi.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
-
-import com.fmi.domain.enumeration.Semester;
 
 /**
  * A Discipline.
@@ -23,46 +20,15 @@ public class Discipline implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Column(name = "code")
-    private String code;
+    @Column(name = "description")
+    private String description;
 
-    @Column(name = "department")
-    private String department;
+    @Column(name = "discipline_type")
+    private String disciplineType;
 
-    @Column(name = "name")
-    private String name;
-
-    @Column(name = "hours_for_lecture")
-    private Integer hoursForLecture;
-
-    @Column(name = "hours_for_workshop")
-    private Integer hoursForWorkshop;
-
-    @Column(name = "hours_for_exercise")
-    private Integer hoursForExercise;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "semester")
-    private Semester semester;
-
-    @Column(name = "number_of_students")
-    private Integer numberOfStudents;
-
-    @Column(name = "incoming_test")
-    private Boolean incomingTest;
-
-    @OneToOne
-    @JoinColumn(unique = true)
-    private DisciplineType type;
-
-    @OneToMany(mappedBy = "discipline")
-    private Set<Direction> approproateFors = new HashSet<>();
-
-    @ManyToMany
-    @JoinTable(name = "discipline_lectos",
-               joinColumns = @JoinColumn(name = "discipline_id", referencedColumnName = "id"),
-               inverseJoinColumns = @JoinColumn(name = "lectos_id", referencedColumnName = "id"))
-    private Set<Identity> lectos = new HashSet<>();
+    @ManyToOne
+    @JsonIgnoreProperties("disciplines")
+    private DisciplineRecord disciplineRecord;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -73,184 +39,43 @@ public class Discipline implements Serializable {
         this.id = id;
     }
 
-    public String getCode() {
-        return code;
+    public String getDescription() {
+        return description;
     }
 
-    public Discipline code(String code) {
-        this.code = code;
+    public Discipline description(String description) {
+        this.description = description;
         return this;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getDepartment() {
-        return department;
+    public String getDisciplineType() {
+        return disciplineType;
     }
 
-    public Discipline department(String department) {
-        this.department = department;
+    public Discipline disciplineType(String disciplineType) {
+        this.disciplineType = disciplineType;
         return this;
     }
 
-    public void setDepartment(String department) {
-        this.department = department;
+    public void setDisciplineType(String disciplineType) {
+        this.disciplineType = disciplineType;
     }
 
-    public String getName() {
-        return name;
+    public DisciplineRecord getDisciplineRecord() {
+        return disciplineRecord;
     }
 
-    public Discipline name(String name) {
-        this.name = name;
+    public Discipline disciplineRecord(DisciplineRecord disciplineRecord) {
+        this.disciplineRecord = disciplineRecord;
         return this;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getHoursForLecture() {
-        return hoursForLecture;
-    }
-
-    public Discipline hoursForLecture(Integer hoursForLecture) {
-        this.hoursForLecture = hoursForLecture;
-        return this;
-    }
-
-    public void setHoursForLecture(Integer hoursForLecture) {
-        this.hoursForLecture = hoursForLecture;
-    }
-
-    public Integer getHoursForWorkshop() {
-        return hoursForWorkshop;
-    }
-
-    public Discipline hoursForWorkshop(Integer hoursForWorkshop) {
-        this.hoursForWorkshop = hoursForWorkshop;
-        return this;
-    }
-
-    public void setHoursForWorkshop(Integer hoursForWorkshop) {
-        this.hoursForWorkshop = hoursForWorkshop;
-    }
-
-    public Integer getHoursForExercise() {
-        return hoursForExercise;
-    }
-
-    public Discipline hoursForExercise(Integer hoursForExercise) {
-        this.hoursForExercise = hoursForExercise;
-        return this;
-    }
-
-    public void setHoursForExercise(Integer hoursForExercise) {
-        this.hoursForExercise = hoursForExercise;
-    }
-
-    public Semester getSemester() {
-        return semester;
-    }
-
-    public Discipline semester(Semester semester) {
-        this.semester = semester;
-        return this;
-    }
-
-    public void setSemester(Semester semester) {
-        this.semester = semester;
-    }
-
-    public Integer getNumberOfStudents() {
-        return numberOfStudents;
-    }
-
-    public Discipline numberOfStudents(Integer numberOfStudents) {
-        this.numberOfStudents = numberOfStudents;
-        return this;
-    }
-
-    public void setNumberOfStudents(Integer numberOfStudents) {
-        this.numberOfStudents = numberOfStudents;
-    }
-
-    public Boolean isIncomingTest() {
-        return incomingTest;
-    }
-
-    public Discipline incomingTest(Boolean incomingTest) {
-        this.incomingTest = incomingTest;
-        return this;
-    }
-
-    public void setIncomingTest(Boolean incomingTest) {
-        this.incomingTest = incomingTest;
-    }
-
-    public DisciplineType getType() {
-        return type;
-    }
-
-    public Discipline type(DisciplineType disciplineType) {
-        this.type = disciplineType;
-        return this;
-    }
-
-    public void setType(DisciplineType disciplineType) {
-        this.type = disciplineType;
-    }
-
-    public Set<Direction> getApproproateFors() {
-        return approproateFors;
-    }
-
-    public Discipline approproateFors(Set<Direction> directions) {
-        this.approproateFors = directions;
-        return this;
-    }
-
-    public Discipline addApproproateFor(Direction direction) {
-        this.approproateFors.add(direction);
-        direction.setDiscipline(this);
-        return this;
-    }
-
-    public Discipline removeApproproateFor(Direction direction) {
-        this.approproateFors.remove(direction);
-        direction.setDiscipline(null);
-        return this;
-    }
-
-    public void setApproproateFors(Set<Direction> directions) {
-        this.approproateFors = directions;
-    }
-
-    public Set<Identity> getLectos() {
-        return lectos;
-    }
-
-    public Discipline lectos(Set<Identity> identities) {
-        this.lectos = identities;
-        return this;
-    }
-
-    public Discipline addLectos(Identity identity) {
-        this.lectos.add(identity);
-        identity.getDisciplines().add(this);
-        return this;
-    }
-
-    public Discipline removeLectos(Identity identity) {
-        this.lectos.remove(identity);
-        identity.getDisciplines().remove(this);
-        return this;
-    }
-
-    public void setLectos(Set<Identity> identities) {
-        this.lectos = identities;
+    public void setDisciplineRecord(DisciplineRecord disciplineRecord) {
+        this.disciplineRecord = disciplineRecord;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -274,15 +99,8 @@ public class Discipline implements Serializable {
     public String toString() {
         return "Discipline{" +
             "id=" + getId() +
-            ", code='" + getCode() + "'" +
-            ", department='" + getDepartment() + "'" +
-            ", name='" + getName() + "'" +
-            ", hoursForLecture=" + getHoursForLecture() +
-            ", hoursForWorkshop=" + getHoursForWorkshop() +
-            ", hoursForExercise=" + getHoursForExercise() +
-            ", semester='" + getSemester() + "'" +
-            ", numberOfStudents=" + getNumberOfStudents() +
-            ", incomingTest='" + isIncomingTest() + "'" +
+            ", description='" + getDescription() + "'" +
+            ", disciplineType='" + getDisciplineType() + "'" +
             "}";
     }
 }

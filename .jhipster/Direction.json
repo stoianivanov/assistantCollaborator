@@ -6,21 +6,18 @@
             "fieldType": "String"
         },
         {
-            "fieldName": "code",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "appropriate",
+            "fieldName": "description",
             "fieldType": "String"
         }
     ],
     "relationships": [
         {
-            "relationshipType": "many-to-one",
-            "otherEntityName": "discipline",
-            "otherEntityRelationshipName": "approproateFor",
-            "relationshipName": "discipline",
-            "otherEntityField": "id"
+            "relationshipType": "many-to-many",
+            "otherEntityName": "disciplineRecord",
+            "otherEntityRelationshipName": "direction",
+            "relationshipName": "disciplineRecord",
+            "otherEntityField": "id",
+            "ownerSide": false
         }
     ],
     "changelogDate": "20200215213500",

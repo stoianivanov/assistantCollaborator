@@ -6,56 +6,39 @@ entity Identity {
     phoneNumber String,
     eMail String
 }
-entity Discipline  {
+entity DisciplineRecord  {
 	code String,
  	department String,
  	name String,
- 	hoursForLecture Integer,
+	form String,
+    course Integer,
+    stream Integer,
+    group Integer,
+    hoursForLecture Integer,
     hoursForWorkshop Integer,
     hoursForExercise Integer,
-    semester Semester,
-    numberOfStudents Integer,
-	incomingTest Boolean
+    numberOfStudents Integer
 }
-
-entity LeadRecord {
-	maxHoursForLecture Integer,
-    maxHoursForExercise Integer,
-    maxHoursForWorkshop Integer,
-    course Integer,
-    type CourseType
-    
-}
-
 entity Direction {
 	name String,
-    code String,
-    appropriate String
-}
-enum Semester {
-	SUMMER,
-    WINTER
+	description String
 }
 
-enum CourseType {
-	LECTURE,
-    EXARCISE,
-    WORKSHOP
+entity Discipline {
+	description String,
+    disciplineType String
 }
 
-entity DisciplineType {
+entity ClassType {
 	type String
 }
-
-relationship OneToMany {
-	Discipline{approproateFor} to Direction,
-    
-}
-
 relationship OneToOne {
-	LeadRecord{assitent} to Discipline,
-    Discipline{type} to DisciplineType
-    }
+    DisciplineRecord{classType} to ClassType
+}
+relationship OneToMany {
+	DisciplineRecord{discipline} to Discipline
+}
 relationship ManyToMany {
-	Discipline{lectos} to Identity{disciplines}
+	DisciplineRecord{lectos} to Identity{disciplines},
+    DisciplineRecord to Direction
 }

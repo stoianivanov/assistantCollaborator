@@ -4,16 +4,11 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { IDiscipline, Discipline } from 'app/shared/model/discipline.model';
 import { DisciplineService } from './discipline.service';
-import { IDisciplineType } from 'app/shared/model/discipline-type.model';
-import { DisciplineTypeService } from 'app/entities/discipline-type/discipline-type.service';
-import { IIdentity } from 'app/shared/model/identity.model';
-import { IdentityService } from 'app/entities/identity/identity.service';
-
-type SelectableEntity = IDisciplineType | IIdentity;
+import { IDisciplineRecord } from 'app/shared/model/discipline-record.model';
+import { DisciplineRecordService } from 'app/entities/discipline-record/discipline-record.service';
 
 @Component({
   selector: 'jhi-discipline-update',
@@ -21,28 +16,18 @@ type SelectableEntity = IDisciplineType | IIdentity;
 })
 export class DisciplineUpdateComponent implements OnInit {
   isSaving = false;
-  types: IDisciplineType[] = [];
-  identities: IIdentity[] = [];
+  disciplinerecords: IDisciplineRecord[] = [];
 
   editForm = this.fb.group({
     id: [],
-    code: [],
-    department: [],
-    name: [],
-    hoursForLecture: [],
-    hoursForWorkshop: [],
-    hoursForExercise: [],
-    semester: [],
-    numberOfStudents: [],
-    incomingTest: [],
-    type: [],
-    lectos: []
+    description: [],
+    disciplineType: [],
+    disciplineRecord: []
   });
 
   constructor(
     protected disciplineService: DisciplineService,
-    protected disciplineTypeService: DisciplineTypeService,
-    protected identityService: IdentityService,
+    protected disciplineRecordService: DisciplineRecordService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -51,46 +36,16 @@ export class DisciplineUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ discipline }) => {
       this.updateForm(discipline);
 
-      this.disciplineTypeService
-        .query({ filter: 'discipline-is-null' })
-        .pipe(
-          map((res: HttpResponse<IDisciplineType[]>) => {
-            return res.body || [];
-          })
-        )
-        .subscribe((resBody: IDisciplineType[]) => {
-          if (!discipline.type || !discipline.type.id) {
-            this.types = resBody;
-          } else {
-            this.disciplineTypeService
-              .find(discipline.type.id)
-              .pipe(
-                map((subRes: HttpResponse<IDisciplineType>) => {
-                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
-                })
-              )
-              .subscribe((concatRes: IDisciplineType[]) => (this.types = concatRes));
-          }
-        });
-
-      this.identityService.query().subscribe((res: HttpResponse<IIdentity[]>) => (this.identities = res.body || []));
+      this.disciplineRecordService.query().subscribe((res: HttpResponse<IDisciplineRecord[]>) => (this.disciplinerecords = res.body || []));
     });
   }
 
   updateForm(discipline: IDiscipline): void {
     this.editForm.patchValue({
       id: discipline.id,
-      code: discipline.code,
-      department: discipline.department,
-      name: discipline.name,
-      hoursForLecture: discipline.hoursForLecture,
-      hoursForWorkshop: discipline.hoursForWorkshop,
-      hoursForExercise: discipline.hoursForExercise,
-      semester: discipline.semester,
-      numberOfStudents: discipline.numberOfStudents,
-      incomingTest: discipline.incomingTest,
-      type: discipline.type,
-      lectos: discipline.lectos
+      description: discipline.description,
+      disciplineType: discipline.disciplineType,
+      disciplineRecord: discipline.disciplineRecord
     });
   }
 
@@ -112,17 +67,9 @@ export class DisciplineUpdateComponent implements OnInit {
     return {
       ...new Discipline(),
       id: this.editForm.get(['id'])!.value,
-      code: this.editForm.get(['code'])!.value,
-      department: this.editForm.get(['department'])!.value,
-      name: this.editForm.get(['name'])!.value,
-      hoursForLecture: this.editForm.get(['hoursForLecture'])!.value,
-      hoursForWorkshop: this.editForm.get(['hoursForWorkshop'])!.value,
-      hoursForExercise: this.editForm.get(['hoursForExercise'])!.value,
-      semester: this.editForm.get(['semester'])!.value,
-      numberOfStudents: this.editForm.get(['numberOfStudents'])!.value,
-      incomingTest: this.editForm.get(['incomingTest'])!.value,
-      type: this.editForm.get(['type'])!.value,
-      lectos: this.editForm.get(['lectos'])!.value
+      description: this.editForm.get(['description'])!.value,
+      disciplineType: this.editForm.get(['disciplineType'])!.value,
+      disciplineRecord: this.editForm.get(['disciplineRecord'])!.value
     };
   }
 
@@ -142,18 +89,7 @@ export class DisciplineUpdateComponent implements OnInit {
     this.isSaving = false;
   }
 
-  trackById(index: number, item: SelectableEntity): any {
+  trackById(index: number, item: IDisciplineRecord): any {
     return item.id;
-  }
-
-  getSelected(selectedVals: IIdentity[], option: IIdentity): IIdentity {
-    if (selectedVals) {
-      for (let i = 0; i < selectedVals.length; i++) {
-        if (option.id === selectedVals[i].id) {
-          return selectedVals[i];
-        }
-      }
-    }
-    return option;
   }
 }

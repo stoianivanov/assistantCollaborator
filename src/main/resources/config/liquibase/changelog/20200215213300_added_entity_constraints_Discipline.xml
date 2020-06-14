@@ -8,23 +8,11 @@
     -->
     <changeSet id="20200215213300-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="type_id"
+        <addForeignKeyConstraint baseColumnNames="discipline_record_id"
                                  baseTableName="discipline"
-                                 constraintName="fk_discipline_type_id"
+                                 constraintName="fk_discipline_discipline_record_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="discipline_type"/>
+                                 referencedTableName="discipline_record"/>
 
-        <addForeignKeyConstraint baseColumnNames="discipline_id"
-                                 baseTableName="discipline_lectos"
-                                 constraintName="fk_discipline_lectos_discipline_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="discipline"/>
-
-        <addForeignKeyConstraint baseColumnNames="lectos_id"
-                                 baseTableName="discipline_lectos"
-                                 constraintName="fk_discipline_lectos_lectos_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="identity"/>
-        
     </changeSet>
 </databaseChangeLog>

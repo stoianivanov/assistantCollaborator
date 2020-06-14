@@ -15,35 +15,14 @@
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="code" type="varchar(255)">
+            <column name="description" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="department" type="varchar(255)">
+            <column name="discipline_type" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="name" type="varchar(255)">
+            <column name="discipline_record_id" type="bigint">
                 <constraints nullable="true" />
-            </column>
-            <column name="hours_for_lecture" type="integer">
-                <constraints nullable="true" />
-            </column>
-            <column name="hours_for_workshop" type="integer">
-                <constraints nullable="true" />
-            </column>
-            <column name="hours_for_exercise" type="integer">
-                <constraints nullable="true" />
-            </column>
-            <column name="semester" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            <column name="number_of_students" type="integer">
-                <constraints nullable="true" />
-            </column>
-            <column name="incoming_test" type="boolean">
-                <constraints nullable="true" />
-            </column>
-            <column name="type_id" type="bigint">
-                <constraints unique="true" nullable="true" uniqueConstraintName="ux_discipline_type_id" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
@@ -51,17 +30,27 @@
 
     <changeSet id="20200215213300-1-relations" author="jhipster">
 
-        <createTable tableName="discipline_lectos">
-            <column name="lectos_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-            <column name="discipline_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-
-        <addPrimaryKey columnNames="discipline_id, lectos_id" tableName="discipline_lectos"/>
-        
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20200215213300-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/discipline.csv"
+                  separator=";"
+                  tableName="discipline">
+            <column name="id" type="numeric"/>
+            <column name="description" type="string"/>
+            <column name="discipline_type" type="string"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
+        </loadData>
+    </changeSet>
+
 </databaseChangeLog>

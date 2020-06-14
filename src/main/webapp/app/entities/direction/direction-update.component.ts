@@ -7,8 +7,6 @@ import { Observable } from 'rxjs';
 
 import { IDirection, Direction } from 'app/shared/model/direction.model';
 import { DirectionService } from './direction.service';
-import { IDiscipline } from 'app/shared/model/discipline.model';
-import { DisciplineService } from 'app/entities/discipline/discipline.service';
 
 @Component({
   selector: 'jhi-direction-update',
@@ -16,28 +14,18 @@ import { DisciplineService } from 'app/entities/discipline/discipline.service';
 })
 export class DirectionUpdateComponent implements OnInit {
   isSaving = false;
-  disciplines: IDiscipline[] = [];
 
   editForm = this.fb.group({
     id: [],
     name: [],
-    code: [],
-    appropriate: [],
-    discipline: []
+    description: []
   });
 
-  constructor(
-    protected directionService: DirectionService,
-    protected disciplineService: DisciplineService,
-    protected activatedRoute: ActivatedRoute,
-    private fb: FormBuilder
-  ) {}
+  constructor(protected directionService: DirectionService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ direction }) => {
       this.updateForm(direction);
-
-      this.disciplineService.query().subscribe((res: HttpResponse<IDiscipline[]>) => (this.disciplines = res.body || []));
     });
   }
 
@@ -45,9 +33,7 @@ export class DirectionUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: direction.id,
       name: direction.name,
-      code: direction.code,
-      appropriate: direction.appropriate,
-      discipline: direction.discipline
+      description: direction.description
     });
   }
 
@@ -70,9 +56,7 @@ export class DirectionUpdateComponent implements OnInit {
       ...new Direction(),
       id: this.editForm.get(['id'])!.value,
       name: this.editForm.get(['name'])!.value,
-      code: this.editForm.get(['code'])!.value,
-      appropriate: this.editForm.get(['appropriate'])!.value,
-      discipline: this.editForm.get(['discipline'])!.value
+      description: this.editForm.get(['description'])!.value
     };
   }
 
@@ -90,9 +74,5 @@ export class DirectionUpdateComponent implements OnInit {
 
   protected onSaveError(): void {
     this.isSaving = false;
-  }
-
-  trackById(index: number, item: IDiscipline): any {
-    return item.id;
   }
 }

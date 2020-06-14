@@ -29,7 +29,7 @@
     "relationships": [
         {
             "relationshipType": "many-to-many",
-            "otherEntityName": "discipline",
+            "otherEntityName": "disciplineRecord",
             "otherEntityRelationshipName": "lectos",
             "relationshipName": "disciplines",
             "otherEntityField": "id",

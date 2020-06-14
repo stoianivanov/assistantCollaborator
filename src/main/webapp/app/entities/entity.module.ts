@@ -23,6 +23,14 @@ import { RouterModule } from '@angular/router';
       {
         path: 'discipline-type',
         loadChildren: () => import('./discipline-type/discipline-type.module').then(m => m.AssistantCollaboratorDisciplineTypeModule)
+      },
+      {
+        path: 'discipline-record',
+        loadChildren: () => import('./discipline-record/discipline-record.module').then(m => m.AssistantCollaboratorDisciplineRecordModule)
+      },
+      {
+        path: 'class-type',
+        loadChildren: () => import('./class-type/class-type.module').then(m => m.AssistantCollaboratorClassTypeModule)
       }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])

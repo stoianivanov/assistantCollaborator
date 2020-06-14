@@ -1,0 +1,88 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="disciplineRecord">
+            <h2><span jhiTranslate="assistantCollaboratorApp.disciplineRecord.detail.title">Discipline Record</span> {{ disciplineRecord.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="assistantCollaboratorApp.disciplineRecord.code">Code</span></dt>
+                <dd>
+                    <span>{{ disciplineRecord.code }}</span>
+                </dd>
+                <dt><span jhiTranslate="assistantCollaboratorApp.disciplineRecord.department">Department</span></dt>
+                <dd>
+                    <span>{{ disciplineRecord.department }}</span>
+                </dd>
+                <dt><span jhiTranslate="assistantCollaboratorApp.disciplineRecord.name">Name</span></dt>
+                <dd>
+                    <span>{{ disciplineRecord.name }}</span>
+                </dd>
+                <dt><span jhiTranslate="assistantCollaboratorApp.disciplineRecord.form">Form</span></dt>
+                <dd>
+                    <span>{{ disciplineRecord.form }}</span>
+                </dd>
+                <dt><span jhiTranslate="assistantCollaboratorApp.disciplineRecord.course">Course</span></dt>
+                <dd>
+                    <span>{{ disciplineRecord.course }}</span>
+                </dd>
+                <dt><span jhiTranslate="assistantCollaboratorApp.disciplineRecord.stream">Stream</span></dt>
+                <dd>
+                    <span>{{ disciplineRecord.stream }}</span>
+                </dd>
+                <dt><span jhiTranslate="assistantCollaboratorApp.disciplineRecord.group">Group</span></dt>
+                <dd>
+                    <span>{{ disciplineRecord.group }}</span>
+                </dd>
+                <dt><span jhiTranslate="assistantCollaboratorApp.disciplineRecord.hoursForLecture">Hours For Lecture</span></dt>
+                <dd>
+                    <span>{{ disciplineRecord.hoursForLecture }}</span>
+                </dd>
+                <dt><span jhiTranslate="assistantCollaboratorApp.disciplineRecord.hoursForWorkshop">Hours For Workshop</span></dt>
+                <dd>
+                    <span>{{ disciplineRecord.hoursForWorkshop }}</span>
+                </dd>
+                <dt><span jhiTranslate="assistantCollaboratorApp.disciplineRecord.hoursForExercise">Hours For Exercise</span></dt>
+                <dd>
+                    <span>{{ disciplineRecord.hoursForExercise }}</span>
+                </dd>
+                <dt><span jhiTranslate="assistantCollaboratorApp.disciplineRecord.numberOfStudents">Number Of Students</span></dt>
+                <dd>
+                    <span>{{ disciplineRecord.numberOfStudents }}</span>
+                </dd>
+                <dt><span jhiTranslate="assistantCollaboratorApp.disciplineRecord.classType">Class Type</span></dt>
+                <dd>
+                    <div *ngIf="disciplineRecord.classType">
+                        <a [routerLink]="['/class-type', disciplineRecord.classType?.id, 'view']">{{ disciplineRecord.classType?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="assistantCollaboratorApp.disciplineRecord.lectos">Lectos</span></dt>
+                <dd>
+                    <span *ngFor="let lectos of disciplineRecord.lectos; let last = last">
+                        <a [routerLink]="['/identity', lectos?.id, 'view']">{{ lectos.id }}</a>{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
+                <dt><span jhiTranslate="assistantCollaboratorApp.disciplineRecord.direction">Direction</span></dt>
+                <dd>
+                    <span *ngFor="let direction of disciplineRecord.directions; let last = last">
+                        <a [routerLink]="['/direction', direction?.id, 'view']">{{ direction.id }}</a>{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/discipline-record', disciplineRecord.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

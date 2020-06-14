@@ -9,7 +9,6 @@ import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -80,18 +79,15 @@ public class DisciplineResource {
             .body(result);
     }
 
-
-
     /**
      * {@code GET  /disciplines} : get all the disciplines.
      *
-     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of disciplines in body.
      */
     @GetMapping("/disciplines")
-    public List<Discipline> getAllDisciplines(@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
+    public List<Discipline> getAllDisciplines() {
         log.debug("REST request to get all Disciplines");
-        return disciplineRepository.findAllWithEagerRelationships();
+        return disciplineRepository.findAll();
     }
 
     /**
@@ -103,7 +99,7 @@ public class DisciplineResource {
     @GetMapping("/disciplines/{id}")
     public ResponseEntity<Discipline> getDiscipline(@PathVariable Long id) {
         log.debug("REST request to get Discipline : {}", id);
-        Optional<Discipline> discipline = disciplineRepository.findOneWithEagerRelationships(id);
+        Optional<Discipline> discipline = disciplineRepository.findById(id);
         return ResponseUtil.wrapOrNotFound(discipline);
     }
 

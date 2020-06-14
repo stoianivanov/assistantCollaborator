@@ -16,18 +16,9 @@
       "detail": {
         "title": "Discipline"
       },
-      "code": "Code",
-      "department": "Department",
-      "name": "Name",
-      "hoursForLecture": "Hours For Lecture",
-      "hoursForWorkshop": "Hours For Workshop",
-      "hoursForExercise": "Hours For Exercise",
-      "semester": "Semester",
-      "numberOfStudents": "Number Of Students",
-      "incomingTest": "Incoming Test",
-      "type": "Type",
-      "approproateFor": "Approproate For",
-      "lectos": "Lectos"
+      "description": "Description",
+      "disciplineType": "Discipline Type",
+      "disciplineRecord": "Discipline Record"
     }
   }
 }

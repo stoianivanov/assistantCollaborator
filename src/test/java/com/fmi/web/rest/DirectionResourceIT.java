@@ -36,11 +36,8 @@ public class DirectionResourceIT {
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
 
-    private static final String DEFAULT_CODE = "AAAAAAAAAA";
-    private static final String UPDATED_CODE = "BBBBBBBBBB";
-
-    private static final String DEFAULT_APPROPRIATE = "AAAAAAAAAA";
-    private static final String UPDATED_APPROPRIATE = "BBBBBBBBBB";
+    private static final String DEFAULT_DESCRIPTION = "AAAAAAAAAA";
+    private static final String UPDATED_DESCRIPTION = "BBBBBBBBBB";
 
     @Autowired
     private DirectionRepository directionRepository;
@@ -85,8 +82,7 @@ public class DirectionResourceIT {
     public static Direction createEntity(EntityManager em) {
         Direction direction = new Direction()
             .name(DEFAULT_NAME)
-            .code(DEFAULT_CODE)
-            .appropriate(DEFAULT_APPROPRIATE);
+            .description(DEFAULT_DESCRIPTION);
         return direction;
     }
     /**
@@ -98,8 +94,7 @@ public class DirectionResourceIT {
     public static Direction createUpdatedEntity(EntityManager em) {
         Direction direction = new Direction()
             .name(UPDATED_NAME)
-            .code(UPDATED_CODE)
-            .appropriate(UPDATED_APPROPRIATE);
+            .description(UPDATED_DESCRIPTION);
         return direction;
     }
 
@@ -124,8 +119,7 @@ public class DirectionResourceIT {
         assertThat(directionList).hasSize(databaseSizeBeforeCreate + 1);
         Direction testDirection = directionList.get(directionList.size() - 1);
         assertThat(testDirection.getName()).isEqualTo(DEFAULT_NAME);
-        assertThat(testDirection.getCode()).isEqualTo(DEFAULT_CODE);
-        assertThat(testDirection.getAppropriate()).isEqualTo(DEFAULT_APPROPRIATE);
+        assertThat(testDirection.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
     }
 
     @Test
@@ -160,8 +154,7 @@ public class DirectionResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(direction.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
-            .andExpect(jsonPath("$.[*].code").value(hasItem(DEFAULT_CODE)))
-            .andExpect(jsonPath("$.[*].appropriate").value(hasItem(DEFAULT_APPROPRIATE)));
+            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION)));
     }
     
     @Test
@@ -176,8 +169,7 @@ public class DirectionResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(direction.getId().intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME))
-            .andExpect(jsonPath("$.code").value(DEFAULT_CODE))
-            .andExpect(jsonPath("$.appropriate").value(DEFAULT_APPROPRIATE));
+            .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION));
     }
 
     @Test
@@ -202,8 +194,7 @@ public class DirectionResourceIT {
         em.detach(updatedDirection);
         updatedDirection
             .name(UPDATED_NAME)
-            .code(UPDATED_CODE)
-            .appropriate(UPDATED_APPROPRIATE);
+            .description(UPDATED_DESCRIPTION);
 
         restDirectionMockMvc.perform(put("/api/directions")
             .contentType(TestUtil.APPLICATION_JSON)
@@ -215,8 +206,7 @@ public class DirectionResourceIT {
         assertThat(directionList).hasSize(databaseSizeBeforeUpdate);
         Direction testDirection = directionList.get(directionList.size() - 1);
         assertThat(testDirection.getName()).isEqualTo(UPDATED_NAME);
-        assertThat(testDirection.getCode()).isEqualTo(UPDATED_CODE);
-        assertThat(testDirection.getAppropriate()).isEqualTo(UPDATED_APPROPRIATE);
+        assertThat(testDirection.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
     }
 
     @Test

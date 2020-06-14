@@ -12,19 +12,9 @@
                 <dd>
                     <span>{{ direction.name }}</span>
                 </dd>
-                <dt><span jhiTranslate="assistantCollaboratorApp.direction.code">Code</span></dt>
+                <dt><span jhiTranslate="assistantCollaboratorApp.direction.description">Description</span></dt>
                 <dd>
-                    <span>{{ direction.code }}</span>
-                </dd>
-                <dt><span jhiTranslate="assistantCollaboratorApp.direction.appropriate">Appropriate</span></dt>
-                <dd>
-                    <span>{{ direction.appropriate }}</span>
-                </dd>
-                <dt><span jhiTranslate="assistantCollaboratorApp.direction.discipline">Discipline</span></dt>
-                <dd>
-                    <div *ngIf="direction.discipline">
-                        <a [routerLink]="['/discipline', direction.discipline?.id, 'view']">{{ direction.discipline?.id }}</a>
-                    </div>
+                    <span>{{ direction.description }}</span>
                 </dd>
             </dl>
 

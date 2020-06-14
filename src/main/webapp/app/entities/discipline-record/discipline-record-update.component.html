@@ -1,0 +1,114 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-discipline-record-heading" jhiTranslate="assistantCollaboratorApp.disciplineRecord.home.createOrEditLabel">Create or edit a Discipline Record</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="assistantCollaboratorApp.disciplineRecord.code" for="field_code">Code</label>
+                    <input type="text" class="form-control" name="code" id="field_code"
+                           formControlName="code"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="assistantCollaboratorApp.disciplineRecord.department" for="field_department">Department</label>
+                    <input type="text" class="form-control" name="department" id="field_department"
+                           formControlName="department"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="assistantCollaboratorApp.disciplineRecord.name" for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                           formControlName="name"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="assistantCollaboratorApp.disciplineRecord.form" for="field_form">Form</label>
+                    <input type="text" class="form-control" name="form" id="field_form"
+                           formControlName="form"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="assistantCollaboratorApp.disciplineRecord.course" for="field_course">Course</label>
+                    <input type="number" class="form-control" name="course" id="field_course"
+                           formControlName="course"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="assistantCollaboratorApp.disciplineRecord.stream" for="field_stream">Stream</label>
+                    <input type="number" class="form-control" name="stream" id="field_stream"
+                           formControlName="stream"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="assistantCollaboratorApp.disciplineRecord.group" for="field_group">Group</label>
+                    <input type="number" class="form-control" name="group" id="field_group"
+                           formControlName="group"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="assistantCollaboratorApp.disciplineRecord.hoursForLecture" for="field_hoursForLecture">Hours For Lecture</label>
+                    <input type="number" class="form-control" name="hoursForLecture" id="field_hoursForLecture"
+                           formControlName="hoursForLecture"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="assistantCollaboratorApp.disciplineRecord.hoursForWorkshop" for="field_hoursForWorkshop">Hours For Workshop</label>
+                    <input type="number" class="form-control" name="hoursForWorkshop" id="field_hoursForWorkshop"
+                           formControlName="hoursForWorkshop"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="assistantCollaboratorApp.disciplineRecord.hoursForExercise" for="field_hoursForExercise">Hours For Exercise</label>
+                    <input type="number" class="form-control" name="hoursForExercise" id="field_hoursForExercise"
+                           formControlName="hoursForExercise"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="assistantCollaboratorApp.disciplineRecord.numberOfStudents" for="field_numberOfStudents">Number Of Students</label>
+                    <input type="number" class="form-control" name="numberOfStudents" id="field_numberOfStudents"
+                           formControlName="numberOfStudents"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="assistantCollaboratorApp.disciplineRecord.classType" for="field_classType">Class Type</label>
+                    <select class="form-control" id="field_classType" name="classType" formControlName="classType">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="classTypeOption.id === editForm.get('classType')!.value?.id ? editForm.get('classType')!.value : classTypeOption" *ngFor="let classTypeOption of classtypes; trackBy: trackById">{{ classTypeOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label jhiTranslate="assistantCollaboratorApp.disciplineRecord.lectos" for="field_lectos">Lectos</label>
+                    <select class="form-control" id="field_lectos" multiple name="lectos" formControlName="lectos">
+                        <option [ngValue]="getSelected(editForm.get('lectos')!.value, identityOption)" *ngFor="let identityOption of identities; trackBy: trackById">{{ identityOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label jhiTranslate="assistantCollaboratorApp.disciplineRecord.direction" for="field_directions">Direction</label>
+                    <select class="form-control" id="field_directions" multiple name="directions" formControlName="directions">
+                        <option [ngValue]="getSelected(editForm.get('directions')!.value, directionOption)" *ngFor="let directionOption of directions; trackBy: trackById">{{ directionOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

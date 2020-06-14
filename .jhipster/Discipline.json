@@ -2,65 +2,21 @@
     "name": "Discipline",
     "fields": [
         {
-            "fieldName": "code",
+            "fieldName": "description",
             "fieldType": "String"
         },
         {
-            "fieldName": "department",
+            "fieldName": "disciplineType",
             "fieldType": "String"
-        },
-        {
-            "fieldName": "name",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "hoursForLecture",
-            "fieldType": "Integer"
-        },
-        {
-            "fieldName": "hoursForWorkshop",
-            "fieldType": "Integer"
-        },
-        {
-            "fieldName": "hoursForExercise",
-            "fieldType": "Integer"
-        },
-        {
-            "fieldName": "semester",
-            "fieldType": "Semester",
-            "fieldValues": "SUMMER,WINTER"
-        },
-        {
-            "fieldName": "numberOfStudents",
-            "fieldType": "Integer"
-        },
-        {
-            "fieldName": "incomingTest",
-            "fieldType": "Boolean"
         }
     ],
     "relationships": [
         {
-            "relationshipType": "one-to-one",
-            "otherEntityName": "disciplineType",
+            "relationshipType": "many-to-one",
+            "otherEntityName": "disciplineRecord",
             "otherEntityRelationshipName": "discipline",
-            "relationshipName": "type",
-            "otherEntityField": "id",
-            "ownerSide": true
-        },
-        {
-            "relationshipType": "one-to-many",
-            "otherEntityName": "direction",
-            "otherEntityRelationshipName": "discipline",
-            "relationshipName": "approproateFor"
-        },
-        {
-            "relationshipType": "many-to-many",
-            "otherEntityName": "identity",
-            "otherEntityRelationshipName": "disciplines",
-            "relationshipName": "lectos",
-            "otherEntityField": "id",
-            "ownerSide": true
+            "relationshipName": "disciplineRecord",
+            "otherEntityField": "id"
         }
     ],
     "changelogDate": "20200215213300",

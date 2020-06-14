@@ -20,7 +20,7 @@ describe('Service Tests', () => {
       service = injector.get(DirectionService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new Direction(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA');
+      elemDefault = new Direction(0, 'AAAAAAA', 'AAAAAAA');
     });
 
     describe('Service methods', () => {
@@ -55,8 +55,7 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             name: 'BBBBBB',
-            code: 'BBBBBB',
-            appropriate: 'BBBBBB'
+            description: 'BBBBBB'
           },
           elemDefault
         );
@@ -74,8 +73,7 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             name: 'BBBBBB',
-            code: 'BBBBBB',
-            appropriate: 'BBBBBB'
+            description: 'BBBBBB'
           },
           elemDefault
         );

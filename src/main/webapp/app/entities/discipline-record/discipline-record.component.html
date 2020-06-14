@@ -1,0 +1,99 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="assistantCollaboratorApp.disciplineRecord.home.title">Discipline Records</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-discipline-record" [routerLink]="['/discipline-record/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="assistantCollaboratorApp.disciplineRecord.home.createLabel">
+            Create a new Discipline Record
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="disciplineRecords?.length === 0">
+        <span jhiTranslate="assistantCollaboratorApp.disciplineRecord.home.notFound">No disciplineRecords found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="disciplineRecords?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+                    <th scope="col" ><span jhiTranslate="assistantCollaboratorApp.disciplineRecord.code">Code</span></th>
+                    <th scope="col" ><span jhiTranslate="assistantCollaboratorApp.disciplineRecord.department">Department</span></th>
+                    <th scope="col" ><span jhiTranslate="assistantCollaboratorApp.disciplineRecord.name">Name</span></th>
+                    <th scope="col" ><span jhiTranslate="assistantCollaboratorApp.disciplineRecord.form">Form</span></th>
+                    <th scope="col" ><span jhiTranslate="assistantCollaboratorApp.disciplineRecord.course">Course</span></th>
+                    <th scope="col" ><span jhiTranslate="assistantCollaboratorApp.disciplineRecord.stream">Stream</span></th>
+                    <th scope="col" ><span jhiTranslate="assistantCollaboratorApp.disciplineRecord.group">Group</span></th>
+                    <th scope="col" ><span jhiTranslate="assistantCollaboratorApp.disciplineRecord.hoursForLecture">Hours For Lecture</span></th>
+                    <th scope="col" ><span jhiTranslate="assistantCollaboratorApp.disciplineRecord.hoursForWorkshop">Hours For Workshop</span></th>
+                    <th scope="col" ><span jhiTranslate="assistantCollaboratorApp.disciplineRecord.hoursForExercise">Hours For Exercise</span></th>
+                    <th scope="col" ><span jhiTranslate="assistantCollaboratorApp.disciplineRecord.numberOfStudents">Number Of Students</span></th>
+                    <th scope="col" ><span jhiTranslate="assistantCollaboratorApp.disciplineRecord.classType">Class Type</span></th>
+                    <th scope="col" ><span jhiTranslate="assistantCollaboratorApp.disciplineRecord.lectos">Lectos</span></th>
+                    <th scope="col" ><span jhiTranslate="assistantCollaboratorApp.disciplineRecord.direction">Direction</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let disciplineRecord of disciplineRecords ;trackBy: trackId">
+                    <td><a [routerLink]="['/discipline-record', disciplineRecord.id, 'view']">{{ disciplineRecord.id }}</a></td>
+                    <td>{{ disciplineRecord.code }}</td>
+                    <td>{{ disciplineRecord.department }}</td>
+                    <td>{{ disciplineRecord.name }}</td>
+                    <td>{{ disciplineRecord.form }}</td>
+                    <td>{{ disciplineRecord.course }}</td>
+                    <td>{{ disciplineRecord.stream }}</td>
+                    <td>{{ disciplineRecord.group }}</td>
+                    <td>{{ disciplineRecord.hoursForLecture }}</td>
+                    <td>{{ disciplineRecord.hoursForWorkshop }}</td>
+                    <td>{{ disciplineRecord.hoursForExercise }}</td>
+                    <td>{{ disciplineRecord.numberOfStudents }}</td>
+                    <td>
+                        <div *ngIf="disciplineRecord.classType">
+                            <a [routerLink]="['/class-type', disciplineRecord.classType?.id, 'view']" >{{ disciplineRecord.classType?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <span *ngFor="let lectos of disciplineRecord.lectos; let last = last">
+                            <a class="form-control-static" [routerLink]="['/identity', lectos?.id, 'view']">{{ lectos.id }}</a>{{ last ? '' : ', ' }}
+                        </span>
+                    </td>
+                    <td>
+                        <span *ngFor="let direction of disciplineRecord.directions; let last = last">
+                            <a class="form-control-static" [routerLink]="['/direction', direction?.id, 'view']">{{ direction.id }}</a>{{ last ? '' : ', ' }}
+                        </span>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/discipline-record', disciplineRecord.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/discipline-record', disciplineRecord.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(disciplineRecord)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

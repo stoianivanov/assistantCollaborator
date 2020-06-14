@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity DisciplineRecord.
+    -->
+    <changeSet id="20200614125800-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="class_type_id"
+                                 baseTableName="discipline_record"
+                                 constraintName="fk_discipline_record_class_type_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="class_type"/>
+
+        <addForeignKeyConstraint baseColumnNames="discipline_record_id"
+                                 baseTableName="discipline_record_lectos"
+                                 constraintName="fk_discipline_record_lectos_discipline_record_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="discipline_record"/>
+
+        <addForeignKeyConstraint baseColumnNames="lectos_id"
+                                 baseTableName="discipline_record_lectos"
+                                 constraintName="fk_discipline_record_lectos_lectos_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="identity"/>
+        
+        <addForeignKeyConstraint baseColumnNames="discipline_record_id"
+                                 baseTableName="discipline_record_direction"
+                                 constraintName="fk_discipline_record_direction_discipline_record_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="discipline_record"/>
+
+        <addForeignKeyConstraint baseColumnNames="direction_id"
+                                 baseTableName="discipline_record_direction"
+                                 constraintName="fk_discipline_record_direction_direction_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="direction"/>
+        
+    </changeSet>
+</databaseChangeLog>

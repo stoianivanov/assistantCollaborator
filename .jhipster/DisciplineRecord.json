@@ -1,0 +1,91 @@
+{
+    "name": "DisciplineRecord",
+    "fields": [
+        {
+            "fieldName": "code",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "department",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "form",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "course",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "stream",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "group",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "hoursForLecture",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "hoursForWorkshop",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "hoursForExercise",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "numberOfStudents",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "classType",
+            "otherEntityRelationshipName": "disciplineRecord",
+            "relationshipName": "classType",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "discipline",
+            "otherEntityRelationshipName": "disciplineRecord",
+            "relationshipName": "discipline"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "identity",
+            "otherEntityRelationshipName": "disciplines",
+            "relationshipName": "lectos",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "direction",
+            "otherEntityRelationshipName": "disciplineRecord",
+            "relationshipName": "direction",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20200614125800",
+    "entityTableName": "discipline_record",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

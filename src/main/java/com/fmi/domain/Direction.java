@@ -1,10 +1,12 @@
 package com.fmi.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A Direction.
@@ -23,15 +25,12 @@ public class Direction implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "code")
-    private String code;
+    @Column(name = "description")
+    private String description;
 
-    @Column(name = "appropriate")
-    private String appropriate;
-
-    @ManyToOne
-    @JsonIgnoreProperties("approproateFors")
-    private Discipline discipline;
+    @ManyToMany(mappedBy = "directions")
+    @JsonIgnore
+    private Set<DisciplineRecord> disciplineRecords = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -55,43 +54,42 @@ public class Direction implements Serializable {
         this.name = name;
     }
 
-    public String getCode() {
-        return code;
+    public String getDescription() {
+        return description;
     }
 
-    public Direction code(String code) {
-        this.code = code;
+    public Direction description(String description) {
+        this.description = description;
         return this;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getAppropriate() {
-        return appropriate;
+    public Set<DisciplineRecord> getDisciplineRecords() {
+        return disciplineRecords;
     }
 
-    public Direction appropriate(String appropriate) {
-        this.appropriate = appropriate;
+    public Direction disciplineRecords(Set<DisciplineRecord> disciplineRecords) {
+        this.disciplineRecords = disciplineRecords;
         return this;
     }
 
-    public void setAppropriate(String appropriate) {
-        this.appropriate = appropriate;
-    }
-
-    public Discipline getDiscipline() {
-        return discipline;
-    }
-
-    public Direction discipline(Discipline discipline) {
-        this.discipline = discipline;
+    public Direction addDisciplineRecord(DisciplineRecord disciplineRecord) {
+        this.disciplineRecords.add(disciplineRecord);
+        disciplineRecord.getDirections().add(this);
         return this;
     }
 
-    public void setDiscipline(Discipline discipline) {
-        this.discipline = discipline;
+    public Direction removeDisciplineRecord(DisciplineRecord disciplineRecord) {
+        this.disciplineRecords.remove(disciplineRecord);
+        disciplineRecord.getDirections().remove(this);
+        return this;
+    }
+
+    public void setDisciplineRecords(Set<DisciplineRecord> disciplineRecords) {
+        this.disciplineRecords = disciplineRecords;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -116,8 +114,7 @@ public class Direction implements Serializable {
         return "Direction{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
-            ", code='" + getCode() + "'" +
-            ", appropriate='" + getAppropriate() + "'" +
+            ", description='" + getDescription() + "'" +
             "}";
     }
 }

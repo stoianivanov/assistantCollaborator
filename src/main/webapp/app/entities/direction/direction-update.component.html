@@ -18,23 +18,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="assistantCollaboratorApp.direction.code" for="field_code">Code</label>
-                    <input type="text" class="form-control" name="code" id="field_code"
-                           formControlName="code"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="assistantCollaboratorApp.direction.appropriate" for="field_appropriate">Appropriate</label>
-                    <input type="text" class="form-control" name="appropriate" id="field_appropriate"
-                           formControlName="appropriate"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="assistantCollaboratorApp.direction.discipline" for="field_discipline">Discipline</label>
-                    <select class="form-control" id="field_discipline" name="discipline" formControlName="discipline">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="disciplineOption.id === editForm.get('discipline')!.value?.id ? editForm.get('discipline')!.value : disciplineOption" *ngFor="let disciplineOption of disciplines; trackBy: trackById">{{ disciplineOption.id }}</option>
-                    </select>
+                    <label class="form-control-label" jhiTranslate="assistantCollaboratorApp.direction.description" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                           formControlName="description"/>
                 </div>
             </div>
 

@@ -1,0 +1,61 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="assistantCollaboratorApp.classType.home.title">Class Types</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-class-type" [routerLink]="['/class-type/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="assistantCollaboratorApp.classType.home.createLabel">
+            Create a new Class Type
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="classTypes?.length === 0">
+        <span jhiTranslate="assistantCollaboratorApp.classType.home.notFound">No classTypes found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="classTypes?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+                    <th scope="col" ><span jhiTranslate="assistantCollaboratorApp.classType.type">Type</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let classType of classTypes ;trackBy: trackId">
+                    <td><a [routerLink]="['/class-type', classType.id, 'view']">{{ classType.id }}</a></td>
+                    <td>{{ classType.type }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/class-type', classType.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/class-type', classType.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(classType)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

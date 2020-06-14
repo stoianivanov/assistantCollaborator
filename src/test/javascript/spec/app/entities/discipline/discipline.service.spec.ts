@@ -2,7 +2,6 @@ import { TestBed, getTestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { DisciplineService } from 'app/entities/discipline/discipline.service';
 import { IDiscipline, Discipline } from 'app/shared/model/discipline.model';
-import { Semester } from 'app/shared/model/enumerations/semester.model';
 
 describe('Service Tests', () => {
   describe('Discipline Service', () => {
@@ -21,7 +20,7 @@ describe('Service Tests', () => {
       service = injector.get(DisciplineService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new Discipline(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 0, 0, 0, Semester.SUMMER, 0, false);
+      elemDefault = new Discipline(0, 'AAAAAAA', 'AAAAAAA');
     });
 
     describe('Service methods', () => {
@@ -55,15 +54,8 @@ describe('Service Tests', () => {
       it('should update a Discipline', () => {
         const returnedFromService = Object.assign(
           {
-            code: 'BBBBBB',
-            department: 'BBBBBB',
-            name: 'BBBBBB',
-            hoursForLecture: 1,
-            hoursForWorkshop: 1,
-            hoursForExercise: 1,
-            semester: 'BBBBBB',
-            numberOfStudents: 1,
-            incomingTest: true
+            description: 'BBBBBB',
+            disciplineType: 'BBBBBB'
           },
           elemDefault
         );
@@ -80,15 +72,8 @@ describe('Service Tests', () => {
       it('should return a list of Discipline', () => {
         const returnedFromService = Object.assign(
           {
-            code: 'BBBBBB',
-            department: 'BBBBBB',
-            name: 'BBBBBB',
-            hoursForLecture: 1,
-            hoursForWorkshop: 1,
-            hoursForExercise: 1,
-            semester: 'BBBBBB',
-            numberOfStudents: 1,
-            incomingTest: true
+            description: 'BBBBBB',
+            disciplineType: 'BBBBBB'
           },
           elemDefault
         );

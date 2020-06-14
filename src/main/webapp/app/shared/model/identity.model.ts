@@ -1,4 +1,4 @@
-import { IDiscipline } from 'app/shared/model/discipline.model';
+import { IDisciplineRecord } from 'app/shared/model/discipline-record.model';
 
 export interface IIdentity {
   id?: number;
@@ -8,7 +8,7 @@ export interface IIdentity {
   job?: string;
   phoneNumber?: string;
   eMail?: string;
-  disciplines?: IDiscipline[];
+  disciplines?: IDisciplineRecord[];
 }
 
 export class Identity implements IIdentity {
@@ -20,6 +20,6 @@ export class Identity implements IIdentity {
     public job?: string,
     public phoneNumber?: string,
     public eMail?: string,
-    public disciplines?: IDiscipline[]
+    public disciplines?: IDisciplineRecord[]
   ) {}
 }

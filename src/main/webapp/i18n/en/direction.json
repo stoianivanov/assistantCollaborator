@@ -17,9 +17,8 @@
         "title": "Direction"
       },
       "name": "Name",
-      "code": "Code",
-      "appropriate": "Appropriate",
-      "discipline": "Discipline"
+      "description": "Description",
+      "disciplineRecord": "Discipline Record"
     }
   }
 }

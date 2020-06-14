@@ -1,0 +1,36 @@
+{
+  "assistantCollaboratorApp": {
+    "disciplineRecord": {
+      "home": {
+        "title": "Discipline Records",
+        "createLabel": "Create a new Discipline Record",
+        "createOrEditLabel": "Create or edit a Discipline Record",
+        "notFound": "No Discipline Records found"
+      },
+      "created": "A new Discipline Record is created with identifier {{ param }}",
+      "updated": "A Discipline Record is updated with identifier {{ param }}",
+      "deleted": "A Discipline Record is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Discipline Record {{ id }}?"
+      },
+      "detail": {
+        "title": "Discipline Record"
+      },
+      "code": "Code",
+      "department": "Department",
+      "name": "Name",
+      "form": "Form",
+      "course": "Course",
+      "stream": "Stream",
+      "group": "Group",
+      "hoursForLecture": "Hours For Lecture",
+      "hoursForWorkshop": "Hours For Workshop",
+      "hoursForExercise": "Hours For Exercise",
+      "numberOfStudents": "Number Of Students",
+      "classType": "Class Type",
+      "discipline": "Discipline",
+      "lectos": "Lectos",
+      "direction": "Direction"
+    }
+  }
+}

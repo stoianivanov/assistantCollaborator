@@ -12,6 +12,8 @@
         "leadRecord": "Lead Record",
         "direction": "Direction",
         "disciplineType": "Discipline Type",
+        "disciplineRecord": "Discipline Record",
+        "classType": "Class Type",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

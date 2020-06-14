@@ -1,19 +1,12 @@
-import { IDiscipline } from 'app/shared/model/discipline.model';
+import { IDisciplineRecord } from 'app/shared/model/discipline-record.model';
 
 export interface IDirection {
   id?: number;
   name?: string;
-  code?: string;
-  appropriate?: string;
-  discipline?: IDiscipline;
+  description?: string;
+  disciplineRecords?: IDisciplineRecord[];
 }
 
 export class Direction implements IDirection {
-  constructor(
-    public id?: number,
-    public name?: string,
-    public code?: string,
-    public appropriate?: string,
-    public discipline?: IDiscipline
-  ) {}
+  constructor(public id?: number, public name?: string, public description?: string, public disciplineRecords?: IDisciplineRecord[]) {}
 }
