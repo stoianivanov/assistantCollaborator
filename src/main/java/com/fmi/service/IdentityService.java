@@ -1,17 +1,18 @@
 package com.fmi.service;
 
-import com.fmi.domain.Authority;
+import com.fmi.domain.Discipline;
 import com.fmi.domain.Identity;
 import com.fmi.domain.User;
-import com.fmi.domain.dto.LectorDto;
+import com.fmi.domain.dto.RecordDto;
+import com.fmi.repository.DisciplineRepository;
 import com.fmi.service.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
-import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 @Service
@@ -21,14 +22,17 @@ public class IdentityService {
 
     private final UserService userService;
 
+    private final DisciplineRepository disciplineRepository;
+
     @Autowired
-    public IdentityService(MailService mailService, UserService userService) {
+    public IdentityService(MailService mailService, UserService userService, DisciplineRepository disciplineRepository) {
         this.mailService = mailService;
         this.userService = userService;
+        this.disciplineRepository = disciplineRepository;
     }
 
-    public void createIdentities(List<LectorDto> lectorDtos ){
-        List<Identity> identities = lectorDtos
+    public void createIdentities(List<RecordDto> recordDtos){
+        List<Identity> identities = recordDtos
                 .stream()
                 .map( l -> this.convertLectorDtoToIdentity(l))
                 .collect(Collectors.toList());
@@ -39,15 +43,16 @@ public class IdentityService {
         System.out.println("Finish with creation of identities ");
         createUserIfNotExeist(identitySet);
         this.mailService.sendEmail("stoyan.ivanov@dreamix.eu", "test", "test", false, false);
+        createDiscilineIfNotExist(recordDtos);
     }
-    private Identity convertLectorDtoToIdentity(LectorDto lectorDto){
+    private Identity convertLectorDtoToIdentity(RecordDto recordDto){
         Identity identity = new Identity();
-        identity.setFullName(lectorDto.getName());
-        identity.setScienceDegree(lectorDto.getScienceDegree());
-        identity.setEducation(lectorDto.getEducation());
-        identity.seteMail(lectorDto.getEmail());
-        identity.setJob(lectorDto.getJob());
-        identity.setPhoneNumber(lectorDto.getPhoneNumber());
+        identity.setFullName(recordDto.getName());
+        identity.setScienceDegree(recordDto.getScienceDegree());
+        identity.setEducation(recordDto.getEducation());
+        identity.seteMail(recordDto.getEmail());
+        identity.setJob(recordDto.getJob());
+        identity.setPhoneNumber(recordDto.getPhoneNumber());
         return identity;
     }
 
@@ -59,6 +64,23 @@ public class IdentityService {
                .collect(Collectors.toList());
     }
 
+    private List<Discipline> createDiscilineIfNotExist(List<RecordDto> rows) {
+        List<Discipline>  disciplines = rows
+                .stream()
+                .map(this::converRowToDiscipline)
+                .filter(this::isDisciplineNotExist)
+                .collect(Collectors.toList());
+        return this.disciplineRepository.saveAll(disciplines);
+    }
+    private boolean isDisciplineNotExist(Discipline discipline) {
+        Optional<Discipline> optional=  this.disciplineRepository.findFirstByDescription(discipline.getDescription());
+
+        if(optional.isPresent()) {
+            return false;
+        }
+        return true;
+    }
+
     private UserDTO convertIdentityToUser(Identity identity) {
         UserDTO user = new UserDTO();
         user.setLogin(identity.geteMail());
@@ -67,5 +89,13 @@ public class IdentityService {
         user.setLastName(fullname[1]);
         user.setEmail(identity.geteMail());
         return user;
+    }
+
+    private Discipline converRowToDiscipline(RecordDto record) {
+        Discipline discipline = new Discipline();
+
+        discipline.setDescription(record.getDiscipline());
+        discipline.setDisciplineType(record.getDisciplineKind());
+        return discipline;
     }
 }

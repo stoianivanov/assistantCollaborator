@@ -1,7 +1,7 @@
 package com.fmi.web.rest;
 
 import com.fmi.domain.Identity;
-import com.fmi.domain.dto.LectorDto;
+import com.fmi.domain.dto.RecordDto;
 import com.fmi.repository.IdentityRepository;
 import com.fmi.service.IdentityService;
 import com.fmi.web.rest.errors.BadRequestAlertException;
@@ -68,12 +68,12 @@ public class IdentityResource {
     }
 
     @PostMapping("/identities/lectors")
-    public ResponseEntity<List<LectorDto>> addLecotrs(@RequestBody List<LectorDto> lectorDtos) {
+    public ResponseEntity<List<RecordDto>> addLecotrs(@RequestBody List<RecordDto> recordDtos) {
         System.out.println("Rabottiiiiii");
 
-        this.identityService.createIdentities(lectorDtos);
+        this.identityService.createIdentities(recordDtos);
         return ResponseEntity.ok()
-                .body(lectorDtos);
+                .body(recordDtos);
 
     }
 

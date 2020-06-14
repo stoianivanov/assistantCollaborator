@@ -1,7 +1,6 @@
 package com.fmi.web.rest;
 
-import com.fmi.domain.Discipline;
-import com.fmi.domain.dto.LectorDto;
+import com.fmi.domain.dto.RecordDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,11 +16,11 @@ import java.util.List;
 public class LectorResource {
 
     @PostMapping("/lectors")
-    public ResponseEntity<List<LectorDto>> addLecotrs(@RequestBody List<LectorDto> lectorDtos) {
+    public ResponseEntity<List<RecordDto>> addLecotrs(@RequestBody List<RecordDto> recordDtos) {
 
 
         return ResponseEntity.ok()
-                .body(lectorDtos);
+                .body(recordDtos);
 
     }
 }

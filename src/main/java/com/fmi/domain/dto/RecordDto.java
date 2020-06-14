@@ -1,6 +1,6 @@
 package com.fmi.domain.dto;
 
-public class LectorDto {
+public class RecordDto {
     private Integer number;
     private String name;
     private String scienceDegree;
@@ -21,10 +21,10 @@ public class LectorDto {
     private Integer hoursForExercise;
     private Integer numberOfStudents;
 
-    public LectorDto() {
+    public RecordDto() {
     }
 
-    public LectorDto(Integer number, String name, String scienceDegree, String education, String job, String phoneNumber, String email, String discipline, String disciplineType, String disciplineKind, String spec, Integer course, String form, Integer flow, String group, Integer hoursForLecture, Integer hoursForWorkshop, Integer hoursForExercise, Integer numberOfStudents) {
+    public RecordDto(Integer number, String name, String scienceDegree, String education, String job, String phoneNumber, String email, String discipline, String disciplineType, String disciplineKind, String spec, Integer course, String form, Integer flow, String group, Integer hoursForLecture, Integer hoursForWorkshop, Integer hoursForExercise, Integer numberOfStudents) {
         this.number = number;
         this.name = name;
         this.scienceDegree = scienceDegree;
