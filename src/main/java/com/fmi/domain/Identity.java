@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -157,15 +158,15 @@ public class Identity implements Serializable {
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
+
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Identity)) {
-            return false;
-        }
-        return id != null && id.equals(((Identity) o).id);
+        if (this == o) return true;
+        if (!(o instanceof Identity)) return false;
+        Identity identity = (Identity) o;
+        return Objects.equals(id, identity.id) &&
+                Objects.equals(fullName, identity.fullName) &&
+                Objects.equals(eMail, identity.eMail);
     }
 
     @Override

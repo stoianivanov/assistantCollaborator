@@ -6,6 +6,7 @@ import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/user/account.model';
 import { HonoredLectorService } from 'app/honored-lector/honored-lector.service';
 import { ILectorsModel } from 'app/shared/model/lectors.model';
+import { IdentityService } from 'app/entities/identity/identity.service';
 
 @Component({
   selector: 'jhi-home',
@@ -21,7 +22,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(
     private accountService: AccountService,
     private loginModalService: LoginModalService,
-    private honoredLectorService: HonoredLectorService
+    private honoredLectorService: HonoredLectorService,
+    private identityService: IdentityService
   ) {}
 
   ngOnInit(): void {
@@ -74,5 +76,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   updateDisciplineAndLectos(lectors: ILectorsModel[]) {
     console.log(lectors);
+    this.identityService.addLectors(lectors).subscribe(() => {});
   }
 }

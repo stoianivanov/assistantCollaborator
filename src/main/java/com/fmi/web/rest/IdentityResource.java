@@ -1,13 +1,16 @@
 package com.fmi.web.rest;
 
 import com.fmi.domain.Identity;
+import com.fmi.domain.dto.LectorDto;
 import com.fmi.repository.IdentityRepository;
+import com.fmi.service.IdentityService;
 import com.fmi.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,8 +38,14 @@ public class IdentityResource {
 
     private final IdentityRepository identityRepository;
 
-    public IdentityResource(IdentityRepository identityRepository) {
+
+    private final IdentityService identityService;
+
+    @Autowired
+    public IdentityResource(IdentityRepository identityRepository, IdentityService identityService) {
+
         this.identityRepository = identityRepository;
+        this.identityService = identityService;
     }
 
     /**
@@ -56,6 +65,16 @@ public class IdentityResource {
         return ResponseEntity.created(new URI("/api/identities/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
             .body(result);
+    }
+
+    @PostMapping("/identities/lectors")
+    public ResponseEntity<List<LectorDto>> addLecotrs(@RequestBody List<LectorDto> lectorDtos) {
+        System.out.println("Rabottiiiiii");
+
+        this.identityService.createIdentities(lectorDtos);
+        return ResponseEntity.ok()
+                .body(lectorDtos);
+
     }
 
     /**

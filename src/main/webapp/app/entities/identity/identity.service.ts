@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared/util/request-util';
 import { IIdentity } from 'app/shared/model/identity.model';
+import { ILectorsModel } from 'app/shared/model/lectors.model';
 
 type EntityResponseType = HttpResponse<IIdentity>;
 type EntityArrayResponseType = HttpResponse<IIdentity[]>;
@@ -17,6 +18,10 @@ export class IdentityService {
 
   create(identity: IIdentity): Observable<EntityResponseType> {
     return this.http.post<IIdentity>(this.resourceUrl, identity, { observe: 'response' });
+  }
+
+  addLectors(lectors: ILectorsModel[]): Observable<EntityResponseType> {
+    return this.http.post<IIdentity>(`${this.resourceUrl}/lectors`, lectors, { observe: 'response' });
   }
 
   update(identity: IIdentity): Observable<EntityResponseType> {

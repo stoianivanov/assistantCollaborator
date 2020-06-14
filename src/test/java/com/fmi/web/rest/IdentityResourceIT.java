@@ -3,6 +3,7 @@ package com.fmi.web.rest;
 import com.fmi.AssistantCollaboratorApp;
 import com.fmi.domain.Identity;
 import com.fmi.repository.IdentityRepository;
+import com.fmi.service.IdentityService;
 import com.fmi.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -69,6 +70,9 @@ public class IdentityResourceIT {
     @Autowired
     private Validator validator;
 
+    @Autowired
+    private IdentityService identityService;
+
     private MockMvc restIdentityMockMvc;
 
     private Identity identity;
@@ -76,7 +80,7 @@ public class IdentityResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final IdentityResource identityResource = new IdentityResource(identityRepository);
+        final IdentityResource identityResource = new IdentityResource(identityRepository, identityService);
         this.restIdentityMockMvc = MockMvcBuilders.standaloneSetup(identityResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
