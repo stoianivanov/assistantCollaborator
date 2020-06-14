@@ -41,10 +41,6 @@ public class Identity implements Serializable {
     @Column(name = "e_mail")
     private String eMail;
 
-    @ManyToMany(mappedBy = "lectos")
-    @JsonIgnore
-    private Set<Discipline> disciplines = new HashSet<>();
-
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -131,33 +127,6 @@ public class Identity implements Serializable {
     public void seteMail(String eMail) {
         this.eMail = eMail;
     }
-
-    public Set<Discipline> getDisciplines() {
-        return disciplines;
-    }
-
-    public Identity disciplines(Set<Discipline> disciplines) {
-        this.disciplines = disciplines;
-        return this;
-    }
-
-    public Identity addDisciplines(Discipline discipline) {
-        this.disciplines.add(discipline);
-        discipline.getLectos().add(this);
-        return this;
-    }
-
-    public Identity removeDisciplines(Discipline discipline) {
-        this.disciplines.remove(discipline);
-        discipline.getLectos().remove(this);
-        return this;
-    }
-
-    public void setDisciplines(Set<Discipline> disciplines) {
-        this.disciplines = disciplines;
-    }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
-
 
     @Override
     public boolean equals(Object o) {

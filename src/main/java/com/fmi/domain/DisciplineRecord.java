@@ -272,18 +272,6 @@ public class DisciplineRecord implements Serializable {
         return this;
     }
 
-    public DisciplineRecord addLectos(Identity identity) {
-        this.lectos.add(identity);
-        identity.getDisciplines().add(this);
-        return this;
-    }
-
-    public DisciplineRecord removeLectos(Identity identity) {
-        this.lectos.remove(identity);
-        identity.getDisciplines().remove(this);
-        return this;
-    }
-
     public void setLectos(Set<Identity> identities) {
         this.lectos = identities;
     }

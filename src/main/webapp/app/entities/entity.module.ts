@@ -13,10 +13,6 @@ import { RouterModule } from '@angular/router';
         loadChildren: () => import('./discipline/discipline.module').then(m => m.AssistantCollaboratorDisciplineModule)
       },
       {
-        path: 'lead-record',
-        loadChildren: () => import('./lead-record/lead-record.module').then(m => m.AssistantCollaboratorLeadRecordModule)
-      },
-      {
         path: 'direction',
         loadChildren: () => import('./direction/direction.module').then(m => m.AssistantCollaboratorDirectionModule)
       },
